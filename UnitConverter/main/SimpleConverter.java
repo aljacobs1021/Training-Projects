@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Converter {
+public class SimpleConverter {
     public static void main(String[] args) {
         int x = 5;
         Scanner input = new Scanner(System.in);
@@ -40,5 +40,7 @@ public class Converter {
             }
 
         }
+
+        input.close();
     }
 }
