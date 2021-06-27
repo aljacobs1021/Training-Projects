@@ -22,10 +22,17 @@ public class FancyConverter {
             } else if (i == 3) {
                 tempConversions();
             } else if (i == 4) {
-                int min = 1;
-                int max = 3;
                 Random randNum = new Random();
-                x = randNum.nextInt((max - min) + min);
+                i = randNum.nextInt(3) + 1;
+
+                if (i == 1) {
+                    volConversions();
+                } else if (i == 2) {
+                    distConversions();
+                } else if (i == 3) {
+                    tempConversions();
+                }
+
             } else {
                 System.out.println("Please enter a valid number, or press 4 to escape.\n");
             }
