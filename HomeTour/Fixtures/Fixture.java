@@ -1,7 +1,5 @@
-package Fixtures;
+package fixtures;
 
-public class Fixture {
-    String name;
-    String shortDesc;
-    String longDesc;
+public abstract class Fixture {
+
 }
