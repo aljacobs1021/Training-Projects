@@ -40,8 +40,9 @@ public class Main {
         // program start and initial input
         System.out.println("-----------------------------------");
         System.out.println("Welcome to Home Tour!");
-        System.out.println("You arrive home, weary from the day's activities.");
-        System.out.println("Unfortunately, you still have work to do. Tour your home to find out more.");
+        // System.out.println("You arrive home, weary from the day's activities.");
+        // System.out.println("Unfortunately, you still have work to do. Tour your home
+        // to find out more.");
         System.out.println("-----------------------------------");
         System.out.println("Your commands are: ");
         returnCmd(args);
@@ -90,7 +91,7 @@ public class Main {
 
         Room currentRoom = player.getCR();
 
-        Room nextRoom = currentRoom.getExits(direction);
+        // Room nextRoom = currentRoom.getExits(direction);
         printRM();
 
         // System.out.println(words[0] == "go");
