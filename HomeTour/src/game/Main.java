@@ -57,7 +57,7 @@ public class Main {
             String[] s = colInput();
             System.out.println("-----------------------------------");
             parse(s, player);
-        } while (colInput() != null);
+        } while (true);
 
     }
 
@@ -94,7 +94,7 @@ public class Main {
         // Room nextRoom = currentRoom.getExits(direction);
         printRM();
 
-        // System.out.println(words[0] == "go");
+        System.out.println(words[0].equals("go"));
         if (words[0].equals("go")) {
             Room exit = currentRoom.getExits(direction);
             if (exit == null) {

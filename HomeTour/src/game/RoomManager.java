@@ -18,42 +18,43 @@ public class RoomManager {
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
-                kit = new Room("The Foyer", "a small foyer",
+                kit = new Room("K", "a HUDGHDJ KITCHEN ",
                                 "The small entryway of a neo-colonial house. A dining room is open to the south, where a large table can be seen."
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
-                lib = new Room("The Foyer", "a small foyer",
+                lib = new Room("L", "a small foyer",
                                 "The small entryway of a neo-colonial house. A dining room is open to the south, where a large table can be seen."
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
-                lr = new Room("The Foyer", "a small foyer",
+                lr = new Room("LR", "a smasdffer",
                                 "The small entryway of a neo-colonial house. A dining room is open to the south, where a large table can be seen."
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
-                apoth = new Room("The Foyer", "a small foyer",
+                apoth = new Room("APOTH", "a small foyer",
                                 "The small entryway of a neo-colonial house. A dining room is open to the south, where a large table can be seen."
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
-                gar = new Room("The Foyer", "a small foyer",
+                gar = new Room("GAR", "a small foyer",
                                 "The small entryway of a neo-colonial house. A dining room is open to the south, where a large table can be seen."
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
-                bed = new Room("The Foyer", "a small foyer",
+                bed = new Room("bed", "a small foyer",
                                 "The small entryway of a neo-colonial house. A dining room is open to the south, where a large table can be seen."
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
-                bath = new Room("The Foyer", "a small foyer",
+                bath = new Room("BATH", "a small foyer",
                                 "The small entryway of a neo-colonial house. A dining room is open to the south, where a large table can be seen."
                                                 + "\n"
                                                 + "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
                                                 + "\n" + "To the north is a small room, where you can see a piano.");
 
+                // N = 0 E = 1 S = 2 W = 3
                 foy.setExits(lr, null, null, lib);
                 lr.setExits(gar, null, foy, kit);
                 gar.setExits(null, null, lr, null);
