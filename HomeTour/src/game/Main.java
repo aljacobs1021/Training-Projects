@@ -48,11 +48,10 @@ public class Main {
         returnCmd(args);
         System.out.println("");
         System.out.println("-----------------------------------");
-        System.out.println(player.getCR().getName());
-        System.out.println(player.getCR().getLD());
         System.out.println("-----------------------------------");
         // put do while loop here
         do {
+            printRM();
             System.out.println("What would you like to do?");
             String[] s = colInput();
             System.out.println("-----------------------------------");
@@ -86,17 +85,18 @@ public class Main {
 
     // parse through the string of words in previous input
     public static void parse(String[] words, Player player) {
-        String direction = words[1];
         // System.out.println(words[0] + words[1]);
 
         Room currentRoom = player.getCR();
+        // System.out.println(currentRoom);
 
         // Room nextRoom = currentRoom.getExits(direction);
-        printRM();
 
         System.out.println(words[0].equals("go"));
         if (words[0].equals("go")) {
+            String direction = words[1];
             Room exit = currentRoom.getExits(direction);
+            System.out.println(exit);
             if (exit == null) {
                 System.out.println("Please type a valid command, or type 'quit' to leave");
             } else {

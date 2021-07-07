@@ -31,6 +31,10 @@ public class Room extends Fixtures {
         this.exits[3] = west;
     }
 
+    public String toString() {
+        return "Room " + this.getName();
+    }
+
     public Room getExits(String direction) {
         switch (direction) {
             case "north":
