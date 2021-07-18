@@ -1,6 +1,10 @@
-package com.example;
+package com;
 
+import java.beans.Transient;
 import java.util.Scanner;
+
+import com.example.Models.Customer;
+import com.example.Models.Employee;
 
 public class Main {
     public static void main(String[] args) {

@@ -2,13 +2,14 @@ package com.example.DAO;
 
 import java.util.List;
 
-import com.example.User;
+import com.example.Models.Customer;
+import com.example.Models.User;
 
-public class CustomersDAO {
+public interface CustomersDAO {
 
     List<User> getAllCustomers();
 
-    User getCustomerByUsername(String username);
+    Customer getCustomerByUsername(String username);
 
     void createCustomer(User u);
 

@@ -1,38 +1,12 @@
-package com.example;
+package com.example.Models;
 
-public class User {
+public class Employee {
     private String firstName;
     private String lastName;
     private String username;
     private String email;
     private String password;
     private int employeeID;
-
-    // customers
-    public User(String firstName, String lastName, String username, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-    // employees
-    public User(int employeeID, String firstName, String lastName, String username, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-    public int getEmpID() {
-        return employeeID;
-    }
-
-    public void setEmpID(int employeeID) {
-        this.employeeID = employeeID;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -74,10 +48,14 @@ public class User {
         this.password = password;
     }
 
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
     @Override
     public String toString() {
-        return "User [id=" + employeeID + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
-                + username + ", email=" + email + ", password=" + password + "]";
+        return "Employee [email=" + email + ", employeeID=" + employeeID + ", firstName=" + firstName + ", lastName="
+                + lastName + ", password=" + password + ", username=" + username + "]";
     }
 
 }
