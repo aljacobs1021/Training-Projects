@@ -7,14 +7,14 @@ import com.example.Models.User;
 
 public interface CustomersDAO {
 
-    List<User> getAllCustomers();
+    List<Customer> getAllCustomers();
 
     Customer getCustomerByUsername(String username);
 
     void createCustomer(User u);
 
-    void updateCustomer(User u);
+    void updateCustomer(Customer c);
 
-    void deleteCustomer(User u);
+    void deleteCustomer(Customer c);
 
 }

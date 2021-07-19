@@ -1,5 +1,7 @@
 package com.example.Services;
 
+// import java.sql.SQLException;
+
 import com.example.DAO.CustomerDB;
 import com.example.DAO.CustomersDAO;
 import com.example.Exceptions.InvalidCredentialsException;
@@ -16,13 +18,21 @@ public class UserServices {
             throws UserNameAlreadyExistsException {
         User u = new User(firstName, lastName, email, username, password);
 
+        try {
+            uDao.createCustomer(u);
+            Logging.logger.info("New user has registered");
+        } catch (Exception e) {
+            Logging.logger.warn("Username created that already exists in the database");
+            throw new UserNameAlreadyExistsException();
+        }
+
         return u;
     }
 
     public Customer login(String username, String password)
             throws UserDoesNotExistException, InvalidCredentialsException {
         Customer u = uDao.getCustomerByUsername(username);
-        if (u == null) {
+        if (u.getUser() == null) {
             Logging.logger.warn("User tried loggging in that does not exist");
             throw new UserDoesNotExistException();
         } else {

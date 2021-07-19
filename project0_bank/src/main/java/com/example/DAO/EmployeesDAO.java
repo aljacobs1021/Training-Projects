@@ -2,11 +2,12 @@ package com.example.DAO;
 
 import java.util.List;
 
+import com.example.Models.Employee;
 import com.example.Models.User;
 
 public interface EmployeesDAO {
 
-    List<User> getAllEmployees();
+    List<Employee> getAllEmployees();
 
     User getEmployeeByID(int employeeID);
 

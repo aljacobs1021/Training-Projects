@@ -1,6 +1,6 @@
 package com.example.Models;
 
-public class Customer {
+public class Customer extends User {
     private String firstName;
     private String lastName;
     private String email;
@@ -13,6 +13,9 @@ public class Customer {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public Customer() {
     }
 
     public String getFirstName() {
