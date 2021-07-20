@@ -1,5 +1,6 @@
 package com.example.DAO;
 
+import java.sql.SQLException;
 import java.util.List;
 import com.example.Models.Account;
 
@@ -8,7 +9,7 @@ public interface AccountsDAO {
 
     Account getAccountByNumber(int accNum);
 
-    void createAccount(Account a);
+    void createAccount(Account a) throws SQLException;
 
     void updateAccount(Account a);
 

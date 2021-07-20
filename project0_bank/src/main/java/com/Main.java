@@ -1,6 +1,6 @@
 package com;
 
-import java.beans.Transient;
+//import java.beans.Transient;
 import java.util.Scanner;
 
 import com.example.Models.Customer;
@@ -8,7 +8,7 @@ import com.example.Models.Employee;
 import com.example.Models.User;
 import com.example.Services.UserServices;
 
-import org.apache.logging.log4j.core.layout.SyslogLayout;
+//import org.apache.logging.log4j.core.layout.SyslogLayout;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Main {
         // deciphers between the choices
         while (!done) {
             System.out.println("Please pick a choice from the menu:");
-            System.out.println("a.) Log in \nb.) Sign up \nc.) Forgot Login \nd.) Quit");
+            System.out.println("a.) Log in \nb.) Sign up \nc.) Quit");
             String choice = input.nextLine();
             choice = choice.toLowerCase();
 
@@ -45,30 +45,54 @@ public class Main {
                 String user = input.nextLine();
                 System.out.println("Please enter a password: ");
                 String pass = input.nextLine();
-                try {
-                    u = uServ.signUp(first, last, email, user, pass);
-                    System.out.println("Congrats! Please login with your new username: " + u.getUsername());
-                } catch (Exception e) {
-                    System.out.println("Sorry, we could not process your request");
-                    System.out.println("Please try again later");
-                    done = true;
+                int ID = employee.getEmployeeID();
+                if (email.contains("bankofAJ.com")) {
+                    try {
+                        u = uServ.employeeSignUp(ID, first, last, email, user, pass);
+                        System.out.println("Welcome to the workforce, " + first
+                                + "! Please login with your new username: " + u.getUsername());
+                    } catch (Exception e) {
+                        System.out.println("Sorry, we could not process your request");
+                        System.out.println("Please try again later");
+                        done = true;
+                    }
+                } else {
+                    try {
+                        u = uServ.customerSignUp(first, last, email, user, pass);
+                        System.out.println("Congrats! Please login with your new username: " + u.getUsername());
+                    } catch (Exception e) {
+                        System.out.println("Sorry, we could not process your request");
+                        System.out.println("Please try again later");
+                        done = true;
+                    }
                 }
             } else if (choice.contains("a") || choice.contains("log in")) {
-                System.out.print("Please enter your username: ");
-                String username = input.nextLine();
-                System.out.print("Please enter your password: ");
-                String password = input.nextLine();
-                try {
-                    customer = uServ.login(username, password);
-                    System.out.println("Welcome " + u.getFirstName());
-                } catch (Exception e) {
-                    System.out.println("Username or password was incorect, please try again.");
+                int attempts = 0;
+                while (attempts < 3) {
+                    System.out.print("Please enter your username: ");
+                    String username = input.nextLine();
+                    System.out.print("Please enter your password: ");
+                    String password = input.nextLine();
+                    try {
+                        customer = uServ.login(username, password);
+                        System.out.println("Welcome " + u.getFirstName());
+                    } catch (Exception e) {
+                        System.out.println("Username or password was incorect, please try again.");
+                        attempts++;
+                    }
+                    if (attempts >= 3) {
+                        System.out.println("Sorry, you've tried to login too many times. Goodbye!");
+                        done = true;
+                    } else {
+
+                    }
                 }
+
             } // else if (choice.contains("c") || choice.contains("forgot login")) {
               // System.out.println("you picked log in");
               // customer.forgotLogIn();
               // }
-            else if (choice.contains("d") || choice.contains("quit")) {
+            else if (choice.contains("c") || choice.contains("quit")) {
                 // System.out.println("you picked log in");
                 System.out.println("Thanks for using Bank of AJ! Goodbye!");
                 done = true;

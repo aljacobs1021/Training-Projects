@@ -1,12 +1,27 @@
 package com.example.Models;
 
-public class Employee {
+import java.util.Random;
+
+public class Employee extends User {
     private String firstName;
     private String lastName;
     private String username;
     private String email;
     private String password;
     private int employeeID;
+    Random num = new Random();
+
+    public Employee(int employeeID, String first, String last, String user, String email, String password) {
+        this.employeeID = num.nextInt(1000) + 9999;
+        this.firstName = first;
+        this.lastName = last;
+        this.username = user;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Employee() {
+    }
 
     public String getFirstName() {
         return firstName;
@@ -50,6 +65,10 @@ public class Employee {
 
     public int getEmployeeID() {
         return employeeID;
+    }
+
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
 
     @Override

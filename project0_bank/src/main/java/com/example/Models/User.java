@@ -5,6 +5,8 @@ import java.util.List;
 
 public class User {
     private int employeeID;
+    private int customerID;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -20,6 +22,7 @@ public class User {
 
     // customers
     public User(String firstName, String lastName, String email, String username, String password) {
+        // this.customerID = customerID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -101,6 +104,14 @@ public class User {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
 }

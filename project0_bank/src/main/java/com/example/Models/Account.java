@@ -1,48 +1,46 @@
 package com.example.Models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
-import com.example.DAO.AccountsDAO;
-import com.example.DAO.CustomersDAO;
+// import java.util.ArrayList;
+// import java.util.List;
 
-public abstract class Account {
+//import com.example.DAO.AccountsDAO;
+//import com.example.DAO.CustomersDAO;
+
+public class Account {
     private int accNum;
     private String user; // username
     private String password;
     private String first;
     private String last;
+    private String email;
     private double bal;
     private String type;
-    private CustomersDAO cDao;
-    private AccountsDAO aDao;
-    private List<Account> accounts;
+    Random num = new Random();
+    // private CustomersDAO cDao;
+    // private AccountsDAO aDao;
+    // private List<Account> accounts;
     // private double balance;
-    // private double amount;
-
-    // for employees
-
-    public Account() {
-        accounts = new ArrayList<Account>();
-    }
-
-    public Account(int accNum, String first, String last, String user, double bal, String type) {
-        this.user = user;
-        this.accNum = accNum;
-        this.accounts = new ArrayList<Account>();
-
-    }
+    // private double amounts
 
     // for customers
-    public Account(int accNum, String user, String password, double startBal, String type) {
-        this.accNum = accNum;
+    public Account(int accNum, String user, double bal, String type) {
+        this.accNum = num.nextInt(1000) + 9999;
         this.user = user;
-        this.password = password;
+        this.bal = bal;
+        this.type = type;
     }
 
-    public abstract void makeWithdrawl(double amount);
+    // for employees
+    public Account(int accNum, String first, String last, String user, String email, double bal, String type) {
+        this.user = user;
+        this.accNum = accNum;
+        this.email = email;
+    }
 
-    public abstract void makeDeposit(double amount);
+    public Account() {
+    }
 
     public String getUser() {
         return user;
@@ -70,6 +68,42 @@ public abstract class Account {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setAccNum(int accNum) {
+        this.accNum = accNum;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
+
+    public double getBal() {
+        return bal;
+    }
+
+    public void setBal(double bal) {
+        this.bal = bal;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

@@ -1,0 +1,9 @@
+2021-07-19 11:10:06 WARN  Logging:36 - User tried loggging in that does not exist
+2021-07-19 11:10:10 WARN  Logging:36 - User tried loggging in that does not exist
+2021-07-19 11:10:13 WARN  Logging:36 - User tried loggging in that does not exist
+2021-07-19 11:14:12 WARN  Logging:36 - User tried loggging in that does not exist
+2021-07-19 11:14:14 WARN  Logging:36 - User tried loggging in that does not exist
+2021-07-19 11:14:16 WARN  Logging:36 - User tried loggging in that does not exist
+2021-07-19 11:44:26 WARN  Logging:25 - Username created that already exists in the database
+2021-07-20 01:21:31 INFO  Logging:30 - LOG: New user has registered
+2021-07-20 01:23:27 INFO  Logging:30 - LOG: New user has registered

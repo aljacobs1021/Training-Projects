@@ -116,4 +116,9 @@ public class Customer extends User {
  * (choice.contains("b") || choice.contains("retrieve username")) {
  * sysout("Please enter your email: "); email = input.nextLine();} else { sysout
  * ("Please enter a valid choice."); }
+ * 
+ * 
+ * connect 2 db attempt 2 add line w user data throw error if no complete
+ * 
+ * have log after each of these
  */

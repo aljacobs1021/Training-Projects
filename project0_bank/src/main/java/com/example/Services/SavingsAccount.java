@@ -3,22 +3,23 @@ package com.example.Services;
 import com.example.Models.Account;
 
 public class SavingsAccount extends Account {
+    private double savingsBal;
+    // private double amount;
 
-    public SavingsAccount(int accNum, String user, String password, double startBal, String type) {
-        super(accNum, user, password, startBal, type);
-        // TODO Auto-generated constructor stub
+    public SavingsAccount(int accNum, String user, double bal, String type, double savingsBal) {
+        super(accNum, user, bal, type);
+        this.savingsBal = savingsBal;
     }
 
-    @Override
-    public void makeWithdrawl(double amount) {
-        // TODO Auto-generated method stub
-
+    public SavingsAccount(double bal) {
+        this.savingsBal = bal;
     }
 
-    @Override
-    public void makeDeposit(double amount) {
-        // TODO Auto-generated method stub
-
+    public double getSavingsBal() {
+        return savingsBal;
     }
 
+    public void setSavingsBal(double savingsBal) {
+        this.savingsBal = savingsBal;
+    }
 }

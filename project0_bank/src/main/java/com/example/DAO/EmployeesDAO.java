@@ -1,5 +1,6 @@
 package com.example.DAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.example.Models.Employee;
@@ -11,10 +12,10 @@ public interface EmployeesDAO {
 
     User getEmployeeByID(int employeeID);
 
-    void createEmployee(User u);
+    void createEmployee(User u) throws SQLException;
 
-    void updateEmployee(User u);
+    void updateEmployee(Employee e);
 
-    void deleteEmployee(User u);
+    void deleteEmployee(Employee e);
 
 }

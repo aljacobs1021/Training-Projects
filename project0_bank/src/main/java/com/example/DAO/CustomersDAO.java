@@ -1,5 +1,6 @@
 package com.example.DAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.example.Models.Customer;
@@ -11,7 +12,7 @@ public interface CustomersDAO {
 
     Customer getCustomerByUsername(String username);
 
-    void createCustomer(User u);
+    void createCustomer(User u) throws SQLException;
 
     void updateCustomer(Customer c);
 
