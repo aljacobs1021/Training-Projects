@@ -164,7 +164,7 @@ public class AccountsDB implements AccountsDAO {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1, a.getAccNum());
-            ps.setDouble(6, a.getBal());
+            ps.setDouble(2, a.getBal());
             ps.execute();
 
         } catch (SQLException e) {
@@ -182,7 +182,7 @@ public class AccountsDB implements AccountsDAO {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1, a.getAccNum());
-            ps.setDouble(6, a.getBal());
+            ps.setDouble(2, a.getBal());
             ps.execute();
 
         } catch (SQLException e) {
