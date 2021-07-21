@@ -47,7 +47,7 @@ public class BDriver {
 						done = true;
 					}
 					if (login) {
-						System.out.println("What would you like to do?");
+						System.out.println("Please pick an option from the menu.");
 						System.out.println(
 								"1. View account balance \n2. Create a new account\n3. Deposit\n4. Withdraw\n5. Quit");
 						choice = Integer.parseInt(in.nextLine());
@@ -108,11 +108,12 @@ public class BDriver {
 
 						} else if (choice == 4) {
 							System.out.print("Please enter the account number of the account to withdraw from: ");
+							//int accNum = in.nextInt();
 							System.out.print("Please enter an amount you would like to withdraw: $");
-							double amount = Double.parseDouble(in.nextLine());
+							double amount = in.nextDouble();
 							aServ.makeWithdrawal(amount);
-
 							System.out.println("Your new account balance is: $" + a.getBal());
+							
 						} else if (choice == 5) {
 							System.out.println("Thanks for using the Bank of AJ!");
 							done = true;
