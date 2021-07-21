@@ -132,7 +132,7 @@ public class BDriver {
 					try {
 						u = uServ.signUp(first, last, email, password, false);
 						System.out.println("You may now log in with the username: " + u.getUsername());
-						continue;
+						done = true;
 					} catch (Exception e) {
 						System.out.println("Sorry, we could not process your request");
 						System.out.println("Please try again later");
