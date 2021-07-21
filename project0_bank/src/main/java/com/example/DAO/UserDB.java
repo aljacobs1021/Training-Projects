@@ -14,18 +14,14 @@ import com.example.Utils.ConnectionUtil;
 public class UserDB implements UserDao {
     ConnectionUtil conUtil = ConnectionUtil.getConnectionUtil();
 
-    // Simple statements
-
     public List<User> getAllUsers() {
 
         List<User> userList = new ArrayList<User>();
 
         try {
             Connection con = conUtil.getConnection();
-            // To create a simple statment we write our query as a string
             String sql = "SELECT * FROM users";
 
-            // We need to create a statement with this sql string
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
 

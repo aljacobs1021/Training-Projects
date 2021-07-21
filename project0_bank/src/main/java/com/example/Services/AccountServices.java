@@ -1,18 +1,14 @@
 package com.example.Services;
 
 import com.example.DAO.AccountsDAO;
-// import com.example.DAO.CustomerDB;
 import com.example.Logging.Logging;
 import com.example.Models.Account;
-// import com.example.Models.Customer;
-// import com.example.Models.User;
 import com.example.Models.User;
 
 import java.sql.SQLException;
 import java.util.Random;
 
 public class AccountServices {
-    // private CustomersDAO cDao;
     private AccountsDAO aDao;
     private double bal;
     private String user;
@@ -34,13 +30,11 @@ public class AccountServices {
         return a;
     }
 
-    public double makeDeposit(double amount, double bal) {
-        Account a = new Account(bal, u, type);
-        bal += amount;
-        // Logging.logger.info("aServ: " + u.getUsername() + " has made a deposit to
-        // account " + a.getAccNum());
-        aDao.updateAccount(a);
-        return bal;
+    public void makeDeposit(double amount, double bal, Account a) {
+        bal = a.getBal();
+        double newBal = bal + amount;
+        Account updatedBal = new Account(a.getAccNum(), a.getUser(), newBal, a.getType());
+        aDao.deposit(updatedBal);
     }
 
     public double makeWithdrawal(double amount) {
@@ -48,13 +42,11 @@ public class AccountServices {
             bal = 0;
             Logging.logger.info("aServ: " + u.getUsername() + " has made a withdrawal to account " + a.getAccNum()
                     + ", resulting in a balance of zero.");
-            aDao.updateAccount(a);
+            aDao.withdraw(a);
             return bal;
         } else {
             bal -= amount;
-            aDao.updateAccount(a);
-            // Logging.logger.info("aServ: " + u.getUsername() + " has made a deposit to
-            // account " + a.getAccNum());
+            aDao.withdraw(a);
             return bal;
         }
     }
@@ -110,16 +102,3 @@ public class AccountServices {
     }
 
 }
-
-/*
- * public void makeNewAccount(int accNum, String username, String password,
- * double startBal, String type) { Account acc = new Account(accNum, username,
- * password, startBal, type); aDao.createAccount(acc); }
- * 
- * public CustomerServices(double balance, double amount) {
- * 
- * }
- * 
- * private double amount;
- * 
- */

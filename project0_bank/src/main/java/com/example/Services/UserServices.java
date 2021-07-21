@@ -1,10 +1,6 @@
 package com.example.Services;
 
 import java.sql.SQLException;
-//import java.util.Random;
-
-//import com.example.DAO.AccountsDAO;
-//import com.example.DAO.AccountsDB;
 import com.example.DAO.UserDao;
 import com.example.Exceptions.InvalidCredentialsException;
 import com.example.Exceptions.UserDoesNotExistException;

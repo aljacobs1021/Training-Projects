@@ -30,6 +30,7 @@ public class BDriver {
 
 		while (!done) {
 			if (u == null) {
+				boolean login = false;
 				System.out.println("Login or Signup? Press 1 to Login, Press 2 to Signup");
 				int choice = Integer.parseInt(in.nextLine());
 				if (choice == 1) {
@@ -40,85 +41,84 @@ public class BDriver {
 					try {
 						u = uServ.signIn(username, password);
 						System.out.println("Welcome " + u.getFirstName() + "!");
+						login = true;
 					} catch (Exception e) {
-						System.out.println("Username or password was incorect. Goodbye");
+						System.out.println("Username or password was incorrect. Goodbye");
 						done = true;
 					}
-					System.out.println("What would you like to do?");
-					System.out.println(
-							"1. View account balance \n2. Create a new account\n3. Deposit\n4. Withdraw\n5. Quit");
-					choice = Integer.parseInt(in.nextLine());
-					if (choice == 1) {
-						System.out.println("Your current balance is: $" + aDao.getAccountByUser(u).getBal());
-						done = true;
-					} else if (choice == 2) {
+					if (login) {
+						System.out.println("What would you like to do?");
 						System.out.println(
-								"Please enter the type of account you would like to create, 1 for checking, 2 for savings:");
+								"1. View account balance \n2. Create a new account\n3. Deposit\n4. Withdraw\n5. Quit");
 						choice = Integer.parseInt(in.nextLine());
 						if (choice == 1) {
-							String type = "checking";
-							System.out.println("Please enter the amount you'd like to deposit initially:");
-							double amount = Double.parseDouble(in.nextLine());
-							try {
-								a = aServ.makeNewBankAccount(amount, u, type);
-								System.out.println("Your " + a.getType().toLowerCase() + " account with account number "
-										+ a.getAccNum() + "has been created.");
-								done = true;
-
-							} catch (Exception e) {
-								Logging.logger.error("Main: " + e);
-								System.out.println("Sorry, we could not process your request.");
-								System.out.println("Please try again later.");
-								done = true;
-							}
-
+							System.out.println("Your current balance is: $" + aDao.getAccountByUser(u).getBal());
+							done = true;
 						} else if (choice == 2) {
-							String type = "savings";
-							System.out.println("Please enter the amount you'd like to deposit initially:");
-							double amount = Double.parseDouble(in.nextLine());
-							try {
-								a = aServ.makeNewBankAccount(amount, u, type);
-								System.out.println("Your " + a.getType().toLowerCase() + " account with account number "
-										+ a.getAccNum() + "has been created.");
-								done = true;
+							System.out.println(
+									"Please enter the type of account you would like to create, 1 for checking, 2 for savings:");
+							choice = Integer.parseInt(in.nextLine());
+							if (choice == 1) {
+								String type = "checking";
+								System.out.println("Please enter the amount you'd like to deposit initially:");
+								double amount = Double.parseDouble(in.nextLine());
+								try {
+									a = aServ.makeNewBankAccount(amount, u, type);
+									System.out.println("Your " + a.getType().toLowerCase()
+											+ " account with account number " + a.getAccNum() + "has been created.");
+									done = true;
 
-							} catch (Exception e) {
-								System.out.println("Sorry, we could not process you request.");
-								System.out.println("Please try again later.");
-								done = true;
+								} catch (Exception e) {
+									Logging.logger.error("Main: " + e);
+									System.out.println("Sorry, we could not process your request.");
+									System.out.println("Please try again later.");
+									done = true;
+								}
+
+							} else if (choice == 2) {
+								String type = "savings";
+								System.out.println("Please enter the amount you'd like to deposit initially:");
+								double amount = Double.parseDouble(in.nextLine());
+								try {
+									a = aServ.makeNewBankAccount(amount, u, type);
+									System.out.println("Your " + a.getType().toLowerCase()
+											+ " account with account number " + a.getAccNum() + "has been created.");
+									done = true;
+
+								} catch (Exception e) {
+									System.out.println("Sorry, we could not process you request.");
+									System.out.println("Please try again later.");
+									done = true;
+								}
+
+							} else {
+								System.out.println("Please enter a valid choice.");
+								continue;
 							}
 
+						} else if (choice == 3) {
+							System.out.print("Please enter the number of the account to deposit to: ");
+							int accNum = in.nextInt();
+							System.out.print("Please enter an amount you would like to deposit: $");
+							double amount = in.nextDouble();
+							aServ.makeDeposit(amount, a.getBal(), a);
+							System.out
+									.println("Your new account balance is: $" + aDao.getAccountByNum(accNum).getBal());
+							done = true;
+
+						} else if (choice == 4) {
+							System.out.print("Please enter the account number of the account to withdraw from: ");
+							System.out.print("Please enter an amount you would like to withdraw: $");
+							double amount = Double.parseDouble(in.nextLine());
+							aServ.makeWithdrawal(amount);
+
+							System.out.println("Your new account balance is: $" + a.getBal());
+						} else if (choice == 5) {
+							System.out.println("Thanks for using the Bank of AJ!");
+							done = true;
 						} else {
 							System.out.println("Please enter a valid choice.");
-							continue;
 						}
-
-					} else if (choice == 3) {
-						System.out.println("Please enter the number of the account to deposit to: ");
-						int accNum = in.nextInt();
-						System.out.println("Account: " + aDao.getAccountByNum(accNum));
-						System.out.println("Please enter an amount you would like to deposit: ");
-						double amount = in.nextDouble();
-						System.out.println("Deposit amount: $" + amount);
-						aServ.makeDeposit(amount, a.getBal());
-
-						System.out.println("Your new account balance is: $" + aDao.getAccountByNum(accNum).getBal());
-						done = true;
-					} else if (choice == 4) {
-						System.out.println("Please enter the account number of the account to withdraw from :");
-						System.out.println("Account: " + aDao.getAccountByUser(u).getAccNum());
-						System.out.println("Please enter an amount you would like to withdraw:");
-						double amount = Double.parseDouble(in.nextLine());
-
-						System.out.println("Withdraw amount: $" + amount);
-						aServ.makeWithdrawal(amount);
-
-						System.out.println("Your new account balance is: $" + a.getBal());
-					} else if (choice == 5) {
-						System.out.println("Thanks for using the Bank of AJ!");
-						done = true;
-					} else {
-						System.out.println("Please enter a valid choice.");
 					}
 				}
 			} else {
@@ -146,20 +146,3 @@ public class BDriver {
 
 	}
 }
-
-/*
- * else { System.out.println("To view posts press 1, to create a post press 2");
- * int choice = Integer.parseInt(in.nextLine()); // If the user chooses 1, we
- * will show them the list of posts if (choice == 1) { List<PostDisplay> posts =
- * pServ.getAllPosts(); for (PostDisplay post : posts) {
- * System.out.println(post.getUsername() + ":");
- * System.out.println(post.getContent()); System.out.println(); }
- * System.out.println("Are you finished? Press 1 for yes, press 2 for no");
- * choice = Integer.parseInt(in.nextLine()); done = (choice == 1) ? true :
- * false; } else { System.out.println("Please enter your content below:");
- * String content = in.nextLine(); pServ.addPost(u.getId(), u.getId(), content);
- * System.out.
- * println("Post was received, are you finished? Press 1 for yes, press 2 for no"
- * ); choice = Integer.parseInt(in.nextLine()); done = (choice == 1) ? true :
- * false; } } }
- */

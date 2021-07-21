@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.logging.Logger;
-
-//import com.example.Logging.Logging;
 import com.example.Models.Account;
 import com.example.Models.User;
 import com.example.Utils.ConnectionUtil;
@@ -24,10 +21,8 @@ public class AccountsDB implements AccountsDAO {
 
         try {
             Connection con = conUtil.getConnection();
-            // To create a simple statment we write our query as a string
             String sql = "SELECT * FROM accounts";
 
-            // We need to create a statement with this sql string
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
 
@@ -79,7 +74,6 @@ public class AccountsDB implements AccountsDAO {
                 + "(?,?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
 
-        // ps.setInt(1, a.getAccNum());
         ps.setString(1, a.getFirst());
         ps.setString(2, a.getLast());
         ps.setString(3, a.getEmail());
@@ -160,5 +154,40 @@ public class AccountsDB implements AccountsDAO {
         }
 
         return null;
+    }
+
+    public void deposit(Account a) {
+        try {
+            Connection con = conUtil.getConnection();
+
+            String sql = "UPDATE accounts SET balance = ? where account_num = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, a.getAccNum());
+            ps.setDouble(6, a.getBal());
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void withdraw(Account a) {
+
+        try {
+            Connection con = conUtil.getConnection();
+
+            String sql = "UPDATE accounts SET balance = ? WHERE account_num = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, a.getAccNum());
+            ps.setDouble(6, a.getBal());
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

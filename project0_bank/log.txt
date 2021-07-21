@@ -73,3 +73,14 @@
 2021-07-21 02:46:01 INFO  Logging:51 - uServ: User was logged in
 2021-07-21 02:50:31 INFO  Logging:51 - uServ: User was logged in
 2021-07-21 02:53:30 INFO  Logging:51 - uServ: User was logged in
+2021-07-21 03:55:31 WARN  Logging:42 - uServ: User tried loggging in that does not exist
+2021-07-21 04:02:43 WARN  Logging:42 - uServ: User tried loggging in that does not exist
+2021-07-21 04:03:11 WARN  Logging:42 - uServ: User tried loggging in that does not exist
+2021-07-21 04:03:20 INFO  Logging:48 - uServ: User was logged in
+2021-07-21 04:07:03 INFO  Logging:48 - uServ: User was logged in
+2021-07-21 04:16:58 INFO  Logging:48 - uServ: User was logged in
+2021-07-21 04:17:32 INFO  Logging:48 - uServ: User was logged in
+2021-07-21 04:21:58 INFO  Logging:48 - uServ: User was logged in
+2021-07-21 04:23:59 INFO  Logging:48 - uServ: User was logged in
+2021-07-21 04:28:56 INFO  Logging:48 - uServ: User was logged in
+2021-07-21 04:33:46 INFO  Logging:48 - uServ: User was logged in

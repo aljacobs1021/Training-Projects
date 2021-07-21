@@ -16,5 +16,9 @@ public interface AccountsDAO {
 
     void updateAccount(Account a);
 
+    void deposit(Account a);
+
+    void withdraw(Account a);
+
     void deleteAccount(Account a);
 }

@@ -2,12 +2,6 @@ package com.example.Models;
 
 import java.util.Random;
 
-// import java.util.ArrayList;
-// import java.util.List;
-
-//import com.example.DAO.AccountsDAO;
-//import com.example.DAO.CustomersDAO;
-
 public class Account {
     private int accNum;
     private String user; // username
@@ -18,15 +12,10 @@ public class Account {
     private double bal;
     private String type;
     Random num = new Random();
-    // private CustomersDAO cDao;
-    // private AccountsDAO aDao;
-    // private List<Account> accounts;
-    // private double balance;
-    // private double amounts
 
     // for customers
     public Account(int accNum, String user, double bal, String type) {
-        this.accNum = num.nextInt(100000) + 9999;
+        //this.accNum = num.nextInt(100000) + 9999;
         this.user = user;
         this.bal = bal;
         this.type = type;
@@ -125,8 +114,3 @@ public class Account {
     }
 
 }
-
-// private double totalAccBal; // all accounts together
-// private double startBal; // specific account balance
-// this.startBal = startBal;
-// this.totalAccBal = totalAccBal;
