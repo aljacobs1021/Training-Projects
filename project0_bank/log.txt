@@ -1,1 +1,4 @@
 2021-07-21 09:07:28 INFO  Logging:24 - uServ: New user has registered
+2021-07-21 09:10:37 INFO  Logging:24 - uServ: New user has registered
+2021-07-21 09:10:52 INFO  Logging:44 - uServ: User was logged in
+2021-07-21 09:11:10 INFO  Logging:28 - aServ: New account type checking has been created.

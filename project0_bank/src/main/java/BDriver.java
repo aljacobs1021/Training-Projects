@@ -65,7 +65,7 @@ public class BDriver {
 								try {
 									a = aServ.makeNewBankAccount(amount, u, type);
 									System.out.println("Your " + a.getType().toLowerCase()
-											+ " account with account number " + a.getAccNum() + "has been created.");
+											+ " account with account number " + a.getAccNum() + " has been created.");
 									done = true;
 
 								} catch (Exception e) {
@@ -82,7 +82,7 @@ public class BDriver {
 								try {
 									a = aServ.makeNewBankAccount(amount, u, type);
 									System.out.println("Your " + a.getType().toLowerCase()
-											+ " account with account number " + a.getAccNum() + "has been created.");
+											+ " account with account number " + a.getAccNum() + " has been created.");
 									done = true;
 
 								} catch (Exception e) {
