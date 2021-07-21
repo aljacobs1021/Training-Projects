@@ -2,52 +2,63 @@ package com.example.Models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class User {
-    private int employeeID;
-    private int customerID;
-
+    private int id;
     private String firstName;
     private String lastName;
-    private String email;
     private String username;
+    private String email;
     private String password;
-    private List<Customer> customers;
-    private List<Employee> employees;
+    private boolean isEmployee;
+    private List<Account> accounts;
 
     public User() {
-        customers = new ArrayList<Customer>();
-        employees = new ArrayList<Employee>();
+        accounts = new ArrayList<Account>();
     }
 
-    // customers
-    public User(String firstName, String lastName, String email, String username, String password) {
-        // this.customerID = customerID;
+    public User(int id, String firstName, String lastName, String email, String password, boolean isEmployee) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
         this.email = email;
-        this.username = username;
         this.password = password;
-        this.customers = new ArrayList<Customer>();
+        this.setEmployee(isEmployee);
+        this.accounts = new ArrayList<Account>();
     }
 
-    // employees
-    public User(int employeeID, String firstName, String lastName, String email, String username, String password) {
-        this.employeeID = employeeID;
+    // Used to send user info to the database because the db auto generates the id
+    public User(String firstName, String lastName, String email, String password, boolean isEmployee) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
         this.email = email;
-        this.username = username;
         this.password = password;
-        this.employees = new ArrayList<Employee>();
+        this.setEmployee(isEmployee);
+        this.accounts = new ArrayList<Account>();
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    // User to get user info from the database
+    public User(int id, String firstName, String lastName, String username, String email, String password,
+            boolean isEmployee) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.setEmployee(isEmployee);
+        this.accounts = new ArrayList<Account>();
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -66,20 +77,20 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -90,30 +101,19 @@ public class User {
         this.password = password;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public boolean isEmployee() {
+        return isEmployee;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setEmployee(boolean isEmployee) {
+        this.isEmployee = isEmployee;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
+                + ", email=" + email + ", password=" + password + ", accounts=" + accounts + "]";
     }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public int getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
 }
 
 /*

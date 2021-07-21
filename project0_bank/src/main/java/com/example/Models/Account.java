@@ -26,14 +26,26 @@ public class Account {
 
     // for customers
     public Account(int accNum, String user, double bal, String type) {
-        this.accNum = num.nextInt(1000) + 9999;
+        this.accNum = num.nextInt(100000) + 9999;
         this.user = user;
+        this.bal = bal;
+        this.type = type;
+    }
+
+    public Account(double bal, User u, String type) {
+        this.user = u.getUsername();
+        this.first = u.getFirstName();
+        this.last = u.getLastName();
+        this.email = u.getEmail();
         this.bal = bal;
         this.type = type;
     }
 
     // for employees
     public Account(int accNum, String first, String last, String user, String email, double bal, String type) {
+        this.accNum = accNum;
+        this.first = first;
+        this.last = last;
         this.user = user;
         this.accNum = accNum;
         this.email = email;

@@ -8,32 +8,33 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.Models.Customer;
 import com.example.Models.User;
 import com.example.Utils.ConnectionUtil;
 
-public class CustomerDB implements CustomersDAO {
-
+public class UserDB implements UserDao {
     ConnectionUtil conUtil = ConnectionUtil.getConnectionUtil();
 
-    public List<Customer> getAllCustomers() {
-        List<Customer> cList = new ArrayList<Customer>();
+    // Simple statements
+
+    public List<User> getAllUsers() {
+
+        List<User> userList = new ArrayList<User>();
 
         try {
             Connection con = conUtil.getConnection();
             // To create a simple statment we write our query as a string
-            String sql = "SELECT * FROM customers";
+            String sql = "SELECT * FROM users";
 
             // We need to create a statement with this sql string
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
 
             while (rs.next()) {
-                cList.add(new Customer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5)));
+                userList.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(4),
+                        rs.getString(6), rs.getBoolean(7)));
             }
 
-            return cList;
+            return userList;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,25 +44,28 @@ public class CustomerDB implements CustomersDAO {
 
     }
 
-    public Customer getCustomerByUsername(String username) {
-        Customer c = new Customer();
+    public User getUserByUsername(String username) {
+
+        User user = new User();
 
         try {
             Connection con = conUtil.getConnection();
 
-            String sql = "SELECT * FROM customers WHERE customers.username = '" + username + "'";
+            String sql = "SELECT * FROM users WHERE users.username = '" + username + "'";
 
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
 
             while (rs.next()) {
-                c.setFirstName(rs.getString(1));
-                c.setLastName(rs.getString(2));
-                c.setEmail(rs.getString(4));
-                c.setUsername(rs.getString(3));
-                c.setPassword(rs.getString(6));
+                user.setId(rs.getInt(1));
+                user.setFirstName(rs.getString(2));
+                user.setLastName(rs.getString(3));
+                user.setEmail(rs.getString(4));
+                user.setUsername(rs.getString(5));
+                user.setPassword(rs.getString(6));
+                user.setEmployee(rs.getBoolean(7));
             }
-            return c;
+            return user;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,9 +74,11 @@ public class CustomerDB implements CustomersDAO {
         return null;
     }
 
-    public void createCustomer(User u) throws SQLException {
+    public void createUser(User u) throws SQLException {
+
         Connection con = conUtil.getConnection();
-        String sql = "INSERT INTO customers(first_name, last_name, email, username, password) values" + "(?,?,?,?,?)";
+        String sql = "INSERT INTO users(first_name, last_name, email, username, password, is_employee) values"
+                + "(?,?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, u.getFirstName());
@@ -80,39 +86,26 @@ public class CustomerDB implements CustomersDAO {
         ps.setString(3, u.getEmail());
         ps.setString(4, u.getUsername());
         ps.setString(5, u.getPassword());
+        ps.setBoolean(6, u.isEmployee());
 
         ps.execute();
 
     }
 
-    public void updateCustomer(Customer c) {
+    public void updateUser(User u) {
         try {
             Connection con = conUtil.getConnection();
-            String sql = "UPDATE customers SET first_name = ?, last_name = ?, email = ?, username = ?, password = ? ";
+            String sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, username = ?, password = ?, is_employee = ? WHERE users.id = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, c.getFirstName());
-            ps.setString(2, c.getLastName());
-            ps.setString(4, c.getEmail());
-            ps.setString(3, c.getUsername());
-            ps.setString(5, c.getPassword());
-            ps.execute();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void deleteCustomer(Customer c) {
-        try {
-
-            Connection con = conUtil.getConnection();
-            String sql = "DELETE FROM customers WHERE customers.username = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-
-            ps.setString(3, c.getUsername());
+            ps.setString(1, u.getFirstName());
+            ps.setString(2, u.getLastName());
+            ps.setString(3, u.getEmail());
+            ps.setString(4, u.getUsername());
+            ps.setString(5, u.getPassword());
+            ps.setInt(6, u.getId());
+            ps.setBoolean(7, u.isEmployee());
 
             ps.execute();
 
@@ -122,4 +115,20 @@ public class CustomerDB implements CustomersDAO {
 
     }
 
+    public void deleteUser(User u) {
+
+        try {
+
+            Connection con = conUtil.getConnection();
+            String sql = "DELETE FROM users WHERE users.id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, u.getId());
+
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

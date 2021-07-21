@@ -7,8 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+//import java.util.logging.Logger;
 
+//import com.example.Logging.Logging;
 import com.example.Models.Account;
+import com.example.Models.User;
 import com.example.Utils.ConnectionUtil;
 
 public class AccountsDB implements AccountsDAO {
@@ -43,22 +46,22 @@ public class AccountsDB implements AccountsDAO {
 
     }
 
-    public Account getAccountByNumber(int accNum) {
+    public Account getAccountByUser(User u) {
         Account a = new Account();
 
         try {
             Connection con = conUtil.getConnection();
 
-            String sql = "SELECT * FROM accounts WHERE accounts.account_num = '" + accNum + "'";
+            String sql = "SELECT * FROM accounts WHERE accounts.username = '" + u.getUsername() + "'";
 
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
 
             while (rs.next()) {
                 a.setAccNum(rs.getInt(1));
-                a.setUser(rs.getString(2));
-                a.setBal(rs.getDouble(3));
-                a.setType(rs.getString(4));
+                a.setUser(rs.getString(5));
+                a.setBal(rs.getDouble(6));
+                a.setType(rs.getString(7));
             }
             return a;
 
@@ -72,19 +75,27 @@ public class AccountsDB implements AccountsDAO {
     @Override
     public void createAccount(Account a) throws SQLException {
         Connection con = conUtil.getConnection();
-        String sql = "INSERT INTO accounts(account_num, first_name, last_name, email, username, balance, type) values"
-                + "(?,?,?,?,?)";
+        String sql = "INSERT INTO accounts(first_name, last_name, email, username, balance, type) values"
+                + "(?,?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, a.getAccNum());
-        ps.setString(2, a.getFirst());
-        ps.setString(3, a.getLast());
-        ps.setString(4, a.getEmail());
-        ps.setString(5, a.getUser());
-        ps.setDouble(6, a.getBal());
-        ps.setString(7, a.getType());
+        // ps.setInt(1, a.getAccNum());
+        ps.setString(1, a.getFirst());
+        ps.setString(2, a.getLast());
+        ps.setString(3, a.getEmail());
+        ps.setString(4, a.getUser());
+        ps.setDouble(5, a.getBal());
+        ps.setString(6, a.getType());
 
         ps.execute();
+
+        sql = "SELECT MAX(account_num) FROM accounts WHERE username = '" + a.getUser() + "'";
+        Statement s = con.createStatement();
+        ResultSet rs = s.executeQuery(sql);
+
+        rs.next();
+        a.setAccNum(rs.getInt(1));
+
     }
 
     @Override
@@ -123,5 +134,31 @@ public class AccountsDB implements AccountsDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Account getAccountByNum(int b) {
+        Account a = new Account();
+
+        try {
+            Connection con = conUtil.getConnection();
+
+            String sql = "SELECT * FROM accounts WHERE account_num = " + b;
+
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery(sql);
+
+            while (rs.next()) {
+                a.setAccNum(rs.getInt(1));
+                a.setUser(rs.getString(5));
+                a.setBal(rs.getDouble(6));
+                a.setType(rs.getString(7));
+            }
+            return a;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
