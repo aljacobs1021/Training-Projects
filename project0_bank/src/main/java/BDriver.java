@@ -28,6 +28,9 @@ public class BDriver {
 		User u = null;
 		Account a = new Account();
 
+		System.out.println("Welcome to Bank of AJ, where we guarantee you'll keep most of your money!*");
+		System.out.println("*Don't read the fine print...");
+
 		while (!done) {
 			if (u == null) {
 				boolean login = false;
@@ -108,12 +111,12 @@ public class BDriver {
 
 						} else if (choice == 4) {
 							System.out.print("Please enter the account number of the account to withdraw from: ");
-							//int accNum = in.nextInt();
+							// int accNum = in.nextInt();
 							System.out.print("Please enter an amount you would like to withdraw: $");
 							double amount = in.nextDouble();
 							aServ.makeWithdrawal(amount);
 							System.out.println("Your new account balance is: $" + a.getBal());
-							
+
 						} else if (choice == 5) {
 							System.out.println("Thanks for using the Bank of AJ!");
 							done = true;
