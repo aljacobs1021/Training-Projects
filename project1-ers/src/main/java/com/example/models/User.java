@@ -1,16 +1,80 @@
 package com.example.models;
 
+@Entity
+@Table(name = "ers_users")
 public class User {
+    // private int id;
+    // private String first; //first name
+    // private String last; //last name
+    // private String username;
+    // private String email;
+    // private String pass; //password
+    private String role; // account type: manager or employee
+
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String first; //first name
-    private String last; //last name
+
+    @Column(name = "first_name", nullable = false)
+    private String first; // first name
+
+    @Column(name = "last_name", nullable = false)
+    private String last; // last name
+
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
-    private String pass; //password
-    private String role; //account type: manager or employee
+
+    @Column(name = "password", nullable = false)
+    private String pass; // password
+
+    @Column(name = "role", nullable = false)
+    private
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 
     public User() {
+    }
 
+    public User(int id, String firstName, String lastName, String email, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
+        this.email = email;
+        this.password = password;
+        // this.posts = new ArrayList<Post>();
+    }
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
+        this.email = email;
+        this.password = password;
+        // this.posts = new ArrayList<Post>();
+    }
+
+    public User(int id, String firstName, String lastName, String email, String username, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        // this.posts = new ArrayList<Post>();
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        // this.posts = new ArrayList<Post>();
     }
 
     public void setID(int id) {
