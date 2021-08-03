@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+//import org.hibernate.criterion.Restrictions;
 
 import com.example.models.Reimbursement;
 import com.example.utils.HibernateUtil;
@@ -19,24 +19,9 @@ public class ReimbDAOHibernate implements ReimbDAO {
 		return reimbursement;
 	}
 
-	// Criteria API allows you to create complex queries programaticaly using OOP
-	// principles rather than sql
-	// It targets the objects rather than the tables
-	@Override
-	public Reimbursement getRRByAuthor(String author) {
-
-		Session ses = HibernateUtil.getSession();
-		System.out.println("In get reimbursement request by author");
-		Reimbursement reimbursement = ses
-				.createQuery("from Reimbursement where reimb_author=:reimb_author", Reimbursement.class)
-				.setAuthor("reimb_author", author); // .uniqueResult()
-		System.out.println(reimbursement);
-		// ses.close();
-		return reimbursement;
-	}
-
 	// HQL allows you to create queries based on the object rather than the table
-	public int getRRById(int id) {
+	@Override
+	public Reimbursement getRRByID(int id) {
 		Session ses = HibernateUtil.getSession();
 		Reimbursement reimbursement = ses.createQuery("from Reimbursement where id=" + id, Reimbursement.class)
 				.uniqueResult();

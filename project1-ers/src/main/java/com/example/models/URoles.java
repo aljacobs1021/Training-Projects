@@ -1,22 +1,30 @@
 package com.example.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 @Entity
-@Table(name = "ers_users")
-public class User {
-    //private int id;
-    //private String first; //first name
-    //private String last; //last name
-    //private String username;
-    //private String email;
-    //private String pass; //password
-    private String role; //account type: manager or employee
+@Table(name = "ers_user_roles")
+public class URoles {
 
     @Id
-	@Column(name="user_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	
-	@Column(name="first_name", nullable=false)
-	private String first; // first name
+    @Column(name = "user_role_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
+    private URoles role;
+
+    public URoles(int id, URoles role) {
+        this.id = id;
+        this.role = role;
+    }
 
 }

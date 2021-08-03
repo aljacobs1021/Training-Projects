@@ -10,7 +10,7 @@ public interface ReimbDAO {
 
 	Reimbursement getRRByID(int id);
 
-	Reimbursement getRRByAuthor(String author);
+	// Reimbursement getRRByAuthor(String author);
 
 	void createRR(Reimbursement r);
 

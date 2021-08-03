@@ -1,14 +1,12 @@
 package com.example.services;
 
-import java.sql.SQLException;
-import com.example.DAO.UserDao;
-import com.example.Exceptions.InvalidCredentialsException;
-import com.example.Exceptions.UserDoesNotExistException;
-import com.example.Exceptions.UserNameAlreadyExistsException;
-import com.example.Logging.Logging;
-import com.example.Models.User;
-import com.example.dao.UserDAO;
+//import java.sql.SQLException;
 import com.example.dao.UserDAOHibernate;
+import com.example.exceptions.InvalidCredentialsException;
+import com.example.exceptions.UserDoesNotExistException;
+import com.example.exceptions.UserNameAlreadyExistsException;
+import com.example.logging.Logging;
+import com.example.models.User;
 
 public class UserServices {
     private UserDAOHibernate uDao;
@@ -17,14 +15,14 @@ public class UserServices {
         this.uDao = u;
     }
 
-    public User signUp(String first, String last, String email, String password, String role)
+    public User signUp(String first, String last, String username, String email, String password)
             throws UserNameAlreadyExistsException {
-        User u = new User(first, last, email, password, false);
+        User u = new User(first, last, username, email, password);
 
         try {
             uDao.createUser(u);
             Logging.logger.info("uServ: New user has registered");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             Logging.logger.warn("uServ: Username created that already exists in the database");
             throw new UserNameAlreadyExistsException();
         }
@@ -34,12 +32,12 @@ public class UserServices {
 
     public User signIn(String username, String password) throws UserDoesNotExistException, InvalidCredentialsException {
 
-        User u = uDao.getUserByUsername(username);
+        User u = uDao.getUserByUserName(username);
 
-        if (u.getId() == 0) {
+        if (u.getID() == 0) {
             Logging.logger.warn("uServ: User tried loggging in that does not exist");
             throw new UserDoesNotExistException();
-        } else if (!u.getPassword().equals(password)) {
+        } else if (!u.getPass().equals(password)) {
             Logging.logger.warn("uServ: User tried to login with invalid credentials");
             throw new InvalidCredentialsException();
         } else {

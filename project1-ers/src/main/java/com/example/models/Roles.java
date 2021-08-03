@@ -1,7 +1,12 @@
 package com.example.models;
 
-public class Roles {
-    public enum Roles {
-        EMPLOYEE("Employee"), MANAGER("Manager");
+public enum Roles {
+    EMPLOYEE("Employee"), MANAGER("Manager");
+    private String role;
+    Roles(String role) {
+        this.role = role;
+    }
+    public String getRole() {
+        return role;
     }
 }

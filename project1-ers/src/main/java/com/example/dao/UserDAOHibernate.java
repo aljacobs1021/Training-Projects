@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+//import org.hibernate.criterion.Restrictions;
 
 import com.example.models.User;
 import com.example.utils.HibernateUtil;
@@ -30,7 +30,7 @@ public class UserDAOHibernate implements UserDAO {
 
 		Session ses = HibernateUtil.getSession();
 		System.out.println("In get user by username");
-		User user = ses.createQuery("from User where username=:username", User.class).setString("username", username)
+		User user = ses.createQuery("from User where username=:username", User.class).setParameter("username", username)
 				.uniqueResult();
 		System.out.println(user);
 		// ses.close();

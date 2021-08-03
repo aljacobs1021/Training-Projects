@@ -1,5 +1,16 @@
 package com.example.models;
 
+import java.util.Random;
+
+//import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+//import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "ers_users")
 public class User {
@@ -31,49 +42,49 @@ public class User {
     @Column(name = "password", nullable = false)
     private String pass; // password
 
-    @Column(name = "role", nullable = false)
-    private
+    //@Column(name = "role", nullable = false)
+    //private 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 
     public User() {
     }
 
     public User(int id, String firstName, String lastName, String email, String password) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first = firstName;
+        this.last = lastName;
         this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
         this.email = email;
-        this.password = password;
+        this.pass = password;
         // this.posts = new ArrayList<Post>();
     }
 
     public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first = firstName;
+        this.last = lastName;
         this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
         this.email = email;
-        this.password = password;
+        this.pass = password;
         // this.posts = new ArrayList<Post>();
     }
 
     public User(int id, String firstName, String lastName, String email, String username, String password) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first = firstName;
+        this.last = lastName;
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.pass = password;
         // this.posts = new ArrayList<Post>();
     }
 
     public User(String firstName, String lastName, String email, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first = firstName;
+        this.last = lastName;
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.pass = password;
         // this.posts = new ArrayList<Post>();
     }
 

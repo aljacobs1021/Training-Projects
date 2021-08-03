@@ -2,6 +2,18 @@ package com.example.models;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "ers_reimbursement")
 public class Reimbursement {
@@ -46,8 +58,6 @@ public class Reimbursement {
     @Column(name = "type_ID", nullable = false)
     private String type;
 
-    @OneToMany(mappedBy = "reimbursement", cascade = CascadeType.ALL)
-
     public Reimbursement(int id, double amount, LocalDateTime submitTime, LocalDateTime resolveTime, String desc,
             String receipt, String author, String resolver, String status, String type) {
         this.id = id;
@@ -62,11 +72,11 @@ public class Reimbursement {
         this.type = type;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getID() {
+    public int getID() {
         return this.id;
     }
 
@@ -78,19 +88,19 @@ public class Reimbursement {
         return this.amount;
     }
 
-    public void setSubTime(String submitTime) {
+    public void setSubTime(LocalDateTime submitTime) {
         this.submitTime = submitTime;
     }
 
-    public String getSubTime() {
+    public LocalDateTime getSubTime() {
         return this.submitTime;
     }
 
-    public void setResTime(String resolveTime) {
+    public void setResTime(LocalDateTime resolveTime) {
         this.resolveTime = resolveTime;
     }
 
-    public String getResTime() {
+    public LocalDateTime getResTime() {
         return this.resolveTime;
     }
 
