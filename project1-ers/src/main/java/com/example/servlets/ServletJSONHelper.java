@@ -17,13 +17,13 @@ public class ServletJSONHelper {
 		System.out.println("In the ServletJSONHelper with URI: " + req.getRequestURI());
 		switch(req.getRequestURI()) {
 			case "/SocialHubWeek4/api/login":
-				LoginController.login(req, res);
+				//LoginController.login(req, res);
 				break;
 			case "/SocialHubWeek4/api/logout":
-				LogoutController.logout(req, res);
+				//LogoutController.logout(req, res);
 				break;
 			case "/SocialHubWeek4/api/session":
-				SessionController.getSession(req, res);
+				//SessionController.getSession(req, res);
 				break;
 		}
 	}
