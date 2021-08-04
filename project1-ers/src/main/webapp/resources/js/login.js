@@ -14,7 +14,7 @@ async function login(e){
 	
 	
 	try{
-		let req = await fetch('http://localhost:8080/SocialHubWeek3/api/login', {
+		let req = await fetch('http://localhost:8081/project1-ers/api/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -27,5 +27,5 @@ async function login(e){
 		return;
 	}
 	
-	location.href = 'resources/html/SocialHub.html';
+	location.href = 'resources/html/Employee.html';
 }

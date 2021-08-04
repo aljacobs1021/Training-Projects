@@ -7,9 +7,9 @@
 	
 	<session-factory>
 		<!-- Connection Information -->
-		<property name="hibernate.connection.username">social</property>
-		<property name="hibernate.connection.password">password</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://java-rev-uta-210621.cinnjdwfimsh.us-east-2.rds.amazonaws.com:5432/project1-ers</property>
+		<property name="hibernate.connection.username">ersuser</property>
+		<property name="hibernate.connection.password">pass</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://java-rev-uta-210621.cinnjdwfimsh.us-east-2.rds.amazonaws.com:5432/project1ers</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.dialect">org.hibernate.PostgreSQLDialect</property>
 		<property name="hibernate.show_sql">true</property>
@@ -26,7 +26,11 @@
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		
 		<!-- Under this comment we will map our java classes to db tables -->
-		<mapping class="com.example.models"/>
+		<mapping class="com.example.models.Reimbursement"/>
+		<mapping class="com.example.models.User"/>
+		<mapping class="com.example.models.URoles"/>
+		<mapping class="com.example.models.RStatus"/>
+		<mapping class="com.example.models.RType"/>
 	</session-factory>
 
 </hibernate-configuration>

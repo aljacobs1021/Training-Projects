@@ -2,13 +2,15 @@ package com.example.models;
 
 import java.util.Random;
 
-//import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +22,7 @@ public class User {
     // private String username;
     // private String email;
     // private String pass; //password
-    private String role; // account type: manager or employee
+    private Roles role; // account type: manager or employee
 
     @Id
     @Column(name = "user_id")
@@ -42,25 +44,16 @@ public class User {
     @Column(name = "password", nullable = false)
     private String pass; // password
 
-    //@Column(name = "role", nullable = false)
-    //private 
-
-    //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name ="user_role_id")
+    private URoles uRole;
 
     public User() {
+
     }
 
     public User(int id, String firstName, String lastName, String email, String password) {
         this.id = id;
-        this.first = firstName;
-        this.last = lastName;
-        this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
-        this.email = email;
-        this.pass = password;
-        // this.posts = new ArrayList<Post>();
-    }
-
-    public User(String firstName, String lastName, String email, String password) {
         this.first = firstName;
         this.last = lastName;
         this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
@@ -87,6 +80,16 @@ public class User {
         this.pass = password;
         // this.posts = new ArrayList<Post>();
     }
+
+    public User(String firstName, String lastName,  String email, String password,
+			Roles role) {
+		this.first= firstName;
+		this.last = lastName;
+		this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
+		this.email = email;
+		this.pass = password;
+		this.role = role;
+	}
 
     public void setID(int id) {
         this.id = id;
@@ -136,11 +139,19 @@ public class User {
         return this.pass;
     }
 
-    public void setRole(String role) {
+    public void setRole(Roles role) {
         this.role = role;
     }
 
-    public String getRole() {
+    public Roles getRole() {
         return this.role;
     }
+
+    @Override
+    public String toString() {
+        return "User [email=" + email + ", first=" + first + ", id=" + id + ", last=" + last + ", pass=" + pass
+                + ", role=" + role + ", username=" + username + "]";
+    }
+
+    
 }

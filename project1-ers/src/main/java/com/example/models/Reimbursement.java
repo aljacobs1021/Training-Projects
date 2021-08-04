@@ -5,11 +5,15 @@ import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+//import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToOne;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,11 +22,8 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name = "ers_reimbursement")
 public class Reimbursement {
 
-    // private String status;
-    // private String submitted;
-    // private String resolved;
-    // private String desc; //description of the reimbursement request
-    // private String receipt;
+    private Status status;
+    private Type type;
 
     @Id
     @Column(name = "reimb_id")
@@ -43,31 +44,57 @@ public class Reimbursement {
     @Column(name = "description", nullable = false)
     private String desc; // description of the reimbursement request
 
-    @Column(name = "receipt", nullable = false)
+    @Column(name = "receipt", nullable = true)
     private String receipt;
 
-    @Column(name = "reimb_author", nullable = false)
-    private String author;
+    @ManyToOne
+    @JoinColumn(name = "reimb_author", nullable = false)
+    private User employee_id;
 
-    @Column(name = "reimb_resolver", nullable = false)
-    private String resolver;
+    @ManyToOne
+    @JoinColumn(name = "reimb_resolver", nullable = false)
+    private User manager_id;
 
-    @Column(name = "status_ID", nullable = false)
-    private String status;
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name="status_id")
+    private RStatus rStatus;
+    
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name="type_id")
+    private RType rType;
 
-    @Column(name = "type_ID", nullable = false)
-    private String type;
+
+
+    public Reimbursement() {
+
+    }
+
+    public Reimbursement(double amount, String desc, Status status, Type type) {
+        this.amount = amount;
+        this.desc = desc;
+        this.status = status;
+        this.type = type;
+    }
+
+    public Reimbursement(double amount, String desc, Status submitted, Type travel, User author, User resolver) {
+        this.amount = amount;
+        this.desc = desc;
+        this.status = submitted;
+        this.type = travel;
+        this.employee_id = author;
+        this.manager_id = resolver;
+    }
 
     public Reimbursement(int id, double amount, LocalDateTime submitTime, LocalDateTime resolveTime, String desc,
-            String receipt, String author, String resolver, String status, String type) {
+            String receipt, User author, User resolver, Status status, Type type) {
         this.id = id;
         this.amount = amount;
         this.submitTime = submitTime;
         this.resolveTime = resolveTime;
         this.desc = desc;
         this.receipt = receipt;
-        this.author = author;
-        this.resolver = resolver;
+        this.employee_id = author;
+        this.manager_id = resolver;
         this.status = status;
         this.type = type;
     }
@@ -120,36 +147,42 @@ public class Reimbursement {
         return this.receipt;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthor(User employee) {
+        this.employee_id = employee;
     }
 
-    public String getAuthor() {
-        return this.author;
+    public User getAuthor() {
+        return this.employee_id;
     }
 
-    public void setResolver(String resolver) {
-        this.resolver = resolver;
+    public void setResolver(User resolver) {
+        this.manager_id = resolver;
     }
 
-    public String getResolver() {
-        return this.resolver;
+    public User getResolver() {
+        return this.manager_id;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
-    public String getType() {
+    public Type getType() {
         return this.type;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
 }
+
+
+    // private String submitted;
+    // private String resolved;
+    // private String desc; //description of the reimbursement request
+    // private String receipt;

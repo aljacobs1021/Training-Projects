@@ -10,36 +10,39 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ers_user_roles")
-public class URoles {
-    private int id;
-    private Roles role;
-
+@Table(name = "ers_reimbursement_type")
+public class RType {
 
     @Id
+    @Column(name = "reimb_type_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_role_id")
-    public int getId() {
-        return id;
-    }
-    
+    private int id;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
-    public Roles getRole() {
-        return role;
+    @Column(name = "reimb_type")
+    private Type type;
+
+    public RType(int id, Type type) {
+        this.id = id;
+        this.type = type;
     }
 
-    public URoles(int id, Roles role) {
-        this.id = id;
-        this.role = role;
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setRole(Roles role) {
-        this.role = role;
+    public Type getType() {
+        return type;
     }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    
 
 }

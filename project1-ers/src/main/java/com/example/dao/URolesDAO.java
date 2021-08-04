@@ -2,41 +2,40 @@ package com.example.dao;
 
 import java.util.List;
 
-import com.example.models.User;
+import com.example.models.URoles;
 import com.example.utils.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class UserDAO {
-
-	public UserDAO() {
+public class URolesDAO {
+    public URolesDAO() {
 		
 	}
 	
-	public void insert(User user) {
+	public void insert(URoles roles) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = ses.beginTransaction();
-		ses.save(user);
+		ses.save(roles);
 		tx.commit();
 	}
 	
-	public void update(User user) {
+	public void update(URoles roles) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = ses.beginTransaction();
-		ses.update(user);
+		ses.update(roles);
 		tx.commit();
 	}
 	
-	public User selectById(int id) {
+	public URoles selectById(int id) {
 		Session ses = HibernateUtil.getSession();
-		User user = ses.get(User.class, id);
-		return user;
+		URoles roles = ses.get(URoles.class, id);
+		return roles;
 	}
 	
-	public List<User> selectAll(){
+	public List<URoles> selectAll(){
 		Session ses = HibernateUtil.getSession();
-		List<User> uList = ses.createQuery("from User", User.class).list();
-		return uList;
+		List<URoles> uRList = ses.createQuery("from URoles", URoles.class).list();
+		return uRList;
 	}
 }

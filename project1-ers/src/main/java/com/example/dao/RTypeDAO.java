@@ -2,41 +2,40 @@ package com.example.dao;
 
 import java.util.List;
 
-import com.example.models.User;
+import com.example.models.RType;
 import com.example.utils.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class UserDAO {
-
-	public UserDAO() {
+public class RTypeDAO {
+    public RTypeDAO() {
 		
 	}
 	
-	public void insert(User user) {
+	public void insert(RType type) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = ses.beginTransaction();
-		ses.save(user);
+		ses.save(type);
 		tx.commit();
 	}
 	
-	public void update(User user) {
+	public void update(RType type) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = ses.beginTransaction();
-		ses.update(user);
+		ses.update(type);
 		tx.commit();
 	}
 	
-	public User selectById(int id) {
+	public RType selectById(int id) {
 		Session ses = HibernateUtil.getSession();
-		User user = ses.get(User.class, id);
-		return user;
+		RType type = ses.get(RType.class, id);
+		return type;
 	}
 	
-	public List<User> selectAll(){
+	public List<RType> selectAll(){
 		Session ses = HibernateUtil.getSession();
-		List<User> uList = ses.createQuery("from User", User.class).list();
-		return uList;
+		List<RType> rTList = ses.createQuery("from RType", RType.class).list();
+		return rTList;
 	}
 }

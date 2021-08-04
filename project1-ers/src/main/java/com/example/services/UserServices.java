@@ -1,4 +1,4 @@
-package com.example.services;
+/* package com.example.services;
 
 //import java.sql.SQLException;
 import com.example.dao.UserDAOHibernate;
@@ -46,4 +46,4 @@ public class UserServices {
         }
     }
 
-}
+} */

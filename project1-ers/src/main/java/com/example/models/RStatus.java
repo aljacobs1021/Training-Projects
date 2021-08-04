@@ -10,36 +10,39 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ers_user_roles")
-public class URoles {
-    private int id;
-    private Roles role;
-
+@Table(name = "ers_reimbursement_status")
+public class RStatus {
 
     @Id
+    @Column(name = "reimb_status_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_role_id")
-    public int getId() {
-        return id;
-    }
-    
+    private int id;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
-    public Roles getRole() {
-        return role;
+    @Column(name = "reimb_status")
+    private Status status;
+
+    public RStatus(int id, Status status) {
+        this.id = id;
+        this.status = status;
     }
 
-    public URoles(int id, Roles role) {
-        this.id = id;
-        this.role = role;
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setRole(Roles role) {
-        this.role = role;
+    public Status getStatus() {
+        return status;
     }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    
 
 }
