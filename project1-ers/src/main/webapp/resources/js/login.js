@@ -14,7 +14,7 @@ async function login(e){
 	
 	
 	try{
-		let req = await fetch('http://localhost:8081/project1-ers/api/login', {
+		let req = await fetch('http://localhost:8080/project1-ers-1.0-SNAPSHOT', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

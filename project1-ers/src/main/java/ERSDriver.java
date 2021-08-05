@@ -29,7 +29,6 @@ public class ERSDriver {
         RType O = new RType(3, Type.OTHER);
         RType T = new RType(4, Type.TRAVEL);
 
-
         uRDao.insert(M);
         uRDao.insert(E);
         User u1 = new User("Robert", "SpeedWagon", "reos@spw.com", "oil", Roles.MANAGER);
@@ -41,6 +40,7 @@ public class ERSDriver {
         rSDao.insert(A);
         rSDao.insert(D);
         rTDao.insert(F);
+        rTDao.insert(L);
         rTDao.insert(O);
         rTDao.insert(T);
         Reimbursement r1 = new Reimbursement(500, "Traveling to Philly", Status.SUBMITTED, Type.TRAVEL, u1, u2);
