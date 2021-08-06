@@ -14,9 +14,7 @@ public class SessionController {
 	
 	public static void getSession(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
 		HttpSession session = req.getSession();
-		
 		ObjectMapper mapper = new ObjectMapper();
-		
 		ObjectNode sesInfo = mapper.createObjectNode();
 		
 		if(session.getAttribute("id") == null) {
@@ -26,9 +24,7 @@ public class SessionController {
 		}
 		
 		System.out.println(session.getAttribute("id"));
-		
 		sesInfo.put("userId", session.getAttribute("id").toString());
-		
 		res.getWriter().write((new ObjectMapper().writeValueAsString(sesInfo)));
 	}
 	

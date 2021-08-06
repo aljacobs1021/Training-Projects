@@ -2,6 +2,7 @@ package com.example.models;
 
 public enum Roles {
     EMPLOYEE, MANAGER;
+    
 }
 
 /*abstractEMPLOYEE("Employee"), MANAGER("Manager");

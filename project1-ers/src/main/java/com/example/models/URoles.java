@@ -29,16 +29,16 @@ public class URoles {
         return role;
     }
 
-    public URoles(int id, Roles role) {
-        this.id = id;
-        this.role = role;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
     public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public URoles(int id, Roles role) {
+        this.id = id;
         this.role = role;
     }
 

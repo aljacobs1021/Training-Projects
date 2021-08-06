@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MasterJSONServlet extends HttpServlet{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		ServletJSONHelper.process(req, res);

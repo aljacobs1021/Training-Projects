@@ -34,9 +34,25 @@ public class UserDAO {
 		return user;
 	}
 
-	public List<User> selectAll() {
+	public List<User> getAllUsers() {
 		Session ses = HibernateUtil.getSession();
 		List<User> uList = ses.createQuery("from User", User.class).list();
 		return uList;
+	}
+
+	public User getUserByUsername(String username) {
+		Session ses = HibernateUtil.getSession();
+		List<User> uList = ses.createQuery("from User where username='" + username + "'", User.class).list();
+		if(uList.size() == 0) {
+			return null;
+		}
+		return uList.get(0);
+	}
+
+	public void delete(User u) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = ses.beginTransaction();
+		ses.delete(u);
+		tx.commit();
 	}
 }

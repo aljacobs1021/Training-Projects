@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-
-//import com.example.controllers.LoginViewController;
+import com.example.controllers.LoginViewController;
 
 public class RequestViewHelper {
 	
@@ -14,10 +13,10 @@ public class RequestViewHelper {
 		System.out.println("In the request helper, with the URI: " + req.getRequestURI());
 		//We will use the specific URI's to send the request to the correct controller
 		switch(req.getRequestURI()) {
-			case "/SocialHubWeek4/login":
-				//return LoginViewController.fetchLoginPage(req);
+			case "/project1-ers/login":
+				return LoginViewController.fetchLoginPage(req);
 		}
-		return "/SocialHubWeek3/login";
+		return "/project1-ers/login";
 	}
 	
 }
