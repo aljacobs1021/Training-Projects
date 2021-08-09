@@ -3,11 +3,27 @@
     <head>
         <title>New Reimbursement Request</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
         <h1>Submit Requests Here</h1>
+        <div class='navbar'>
+            <ul class='nav-list'>
+                <li class='nav-item'><a class='nav-link' href="Profile.html"><img id='profile-pic' src='https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png' height='60px' width='60px' /></a></li>
+                <li class='nav-item'><button href="login.html">Logout</button></li>
+            </ul>
+            <li class="dropdown">
+                <button class="dropbtn">三</button>
+                <div class="dropdown-content">
+                    <a href = "Profile.html">Account Details</a>
+                    <a href = "Employee.html">Home</a>
+                    <a href = "EmpViewRiemb.html">View Reimbursements</a>
+                    <a href = "EmpRequestNewReimb.html">Request a Reimbursement</a>
+                </div>
+            </li>
+        </div>
 
-        <form id='newRequest'>
+        <form id='request'>
             <label for='type'>Reimbursement Type: </label>
             <select id='type' name='type' required id='type'>
                 <option value="none" selected disabled hidden>Select an Option</option>
@@ -20,7 +36,7 @@
             <input type='number' step='any' name='amount' min="0" required id='amount'>
             <label for='description'>Description: </label>
             <input type='text' name='description' maxlength='150' required id='description'>
-            <input type='submit' value="New Request"/>
+            <input type='submit' value="Submit Request"/>
         </form>
         <script src="../js/request.js"></script>
     </body>
