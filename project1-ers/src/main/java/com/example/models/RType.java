@@ -22,7 +22,12 @@ public class RType {
     @Column(name = "reimb_type")
     private Type type;
 
+    public RType() {
+        
+    }
+
     public RType(int id, Type type) {
+        super();
         this.id = id;
         this.type = type;
     }
@@ -41,6 +46,11 @@ public class RType {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "RType [id=" + id + ", type=" + type + "]";
     }
 
     

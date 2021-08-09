@@ -30,7 +30,7 @@ public class UserDAO {
 
 	public User selectById(int id) {
 		Session ses = HibernateUtil.getSession();
-		User user = ses.get(User.class, id);
+		User user = ses.createQuery("from User where id =" + id, User.class).uniqueResult();
 		return user;
 	}
 

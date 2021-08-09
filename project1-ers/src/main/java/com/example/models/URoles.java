@@ -12,19 +12,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ers_user_roles")
 public class URoles {
-    private int id;
-    private Roles role;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_role_id")
-    public int getId() {
-        return id;
-    }
+    private int id;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
+    private Roles role;
+
+    public URoles() {
+
+    }
+
+    public URoles(int id, Roles role) {
+        super();
+        this.id = id;
+        this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public Roles getRole() {
         return role;
     }
@@ -37,9 +47,9 @@ public class URoles {
         this.role = role;
     }
 
-    public URoles(int id, Roles role) {
-        this.id = id;
-        this.role = role;
+    @Override
+    public String toString() {
+        return "URoles [id=" + id + ", role=" + role + "]";
     }
 
 }

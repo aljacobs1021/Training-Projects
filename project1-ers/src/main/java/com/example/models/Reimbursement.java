@@ -1,12 +1,12 @@
 package com.example.models;
 
 import java.time.LocalDateTime;
-
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+//import javax.persistence.Enumerated;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,14 +16,13 @@ import javax.persistence.ManyToOne;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "ers_reimbursement")
 public class Reimbursement {
-
-    private Status status;
-    private Type type;
 
     @Id
     @Column(name = "reimb_id")
@@ -47,46 +46,49 @@ public class Reimbursement {
     @Column(name = "receipt", nullable = true)
     private String receipt;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "reimb_author", nullable = false)
     private User employee_id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "reimb_resolver", nullable = false)
     private User manager_id;
 
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name="status_id")
-    private RStatus rStatus;
-    
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name="type_id")
-    private RType rType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id")
+    private RStatus status;
 
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
+    private RType type;
 
     public Reimbursement() {
-
+        super();
     }
 
-    public Reimbursement(double amount, String desc, Status status, Type type) {
+    public Reimbursement(double amount, String desc, RStatus status, RType type) {
+        super();
         this.amount = amount;
         this.desc = desc;
         this.status = status;
         this.type = type;
     }
 
-    public Reimbursement(double amount, String desc, Status submitted, Type travel, User author, User resolver) {
+    public Reimbursement(double amount, String desc, RStatus submitted, RType type, User author, User resolver) {
+        super();
         this.amount = amount;
         this.desc = desc;
         this.status = submitted;
-        this.type = travel;
+        this.type = type;
         this.employee_id = author;
         this.manager_id = resolver;
     }
 
     public Reimbursement(int id, double amount, LocalDateTime submitTime, LocalDateTime resolveTime, String desc,
-            String receipt, User author, User resolver, Status status, Type type) {
+            String receipt, User author, User resolver, RStatus status, RType type) {
+        super();
         this.id = id;
         this.amount = amount;
         this.submitTime = submitTime;
@@ -163,26 +165,32 @@ public class Reimbursement {
         return this.manager_id;
     }
 
-    public void setType(Type type) {
+    public void setType(RType type) {
         this.type = type;
     }
 
-    public Type getType() {
+    public RType getType() {
         return this.type;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(RStatus status) {
         this.status = status;
     }
 
-    public Status getStatus() {
+    public RStatus getStatus() {
         return this.status;
+    }
+
+    @Override
+    public String toString() {
+        return "Reimbursement [amount=" + amount + ", desc=" + desc + ", employee_id=" + employee_id.getUsername()
+                + ", id=" + id + ", manager_id=" + manager_id.getUsername() + ", receipt=" + receipt + ", resolveTime="
+                + resolveTime + ", status=" + status + ", submitTime=" + submitTime + ", type=" + type + "]";
     }
 
 }
 
-
-    // private String submitted;
-    // private String resolved;
-    // private String desc; //description of the reimbursement request
-    // private String receipt;
+// private String submitted;
+// private String resolved;
+// private String desc; //description of the reimbursement request
+// private String receipt;

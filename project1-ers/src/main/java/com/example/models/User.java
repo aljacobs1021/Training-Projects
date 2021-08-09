@@ -1,8 +1,10 @@
 package com.example.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "ers_users")
@@ -22,10 +29,9 @@ public class User {
     // private String username;
     // private String email;
     // private String pass; //password
-    private Roles role; // account type: manager or employee
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -44,52 +50,43 @@ public class User {
     @Column(name = "password", nullable = false)
     private String pass; // password
 
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name ="user_role_id")
-    private URoles uRole;
+    @OneToMany(mappedBy = "employee_id", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Reimbursement> employees = new ArrayList<Reimbursement>();
+
+    @OneToMany(mappedBy = "manager_id", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Reimbursement> manager = new ArrayList<Reimbursement>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
+    private URoles role; // account type: manager or employee
 
     public User() {
-
+        super();
     }
 
-    public User(int id, String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String username, String password, URoles role) {
+        super();
+        this.first = firstName;
+        this.last = lastName;
+        this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
+        this.email = email;
+        this.pass = password;
+        this.role = role;
+    }
+
+    public User(int id, String firstName, String lastName, String email, String username, String password,
+            URoles role) {
+        super();
         this.id = id;
         this.first = firstName;
         this.last = lastName;
         this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
         this.email = email;
         this.pass = password;
-        // this.posts = new ArrayList<Post>();
+        this.role = role;
     }
-
-    public User(int id, String firstName, String lastName, String email, String username, String password) {
-        this.id = id;
-        this.first = firstName;
-        this.last = lastName;
-        this.username = username;
-        this.email = email;
-        this.pass = password;
-        // this.posts = new ArrayList<Post>();
-    }
-
-    public User(String firstName, String lastName, String email, String username, String password) {
-        this.first = firstName;
-        this.last = lastName;
-        this.username = username;
-        this.email = email;
-        this.pass = password;
-        // this.posts = new ArrayList<Post>();
-    }
-
-    public User(String firstName, String lastName,  String email, String password,
-			Roles role) {
-		this.first= firstName;
-		this.last = lastName;
-		this.username = firstName + lastName + (new Random().nextInt(9000) + 1000);
-		this.email = email;
-		this.pass = password;
-		this.role = role;
-	}
 
     public void setID(int id) {
         this.id = id;
@@ -139,11 +136,11 @@ public class User {
         return this.pass;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(URoles role) {
         this.role = role;
     }
 
-    public Roles getRole() {
+    public URoles getRole() {
         return this.role;
     }
 
@@ -153,5 +150,4 @@ public class User {
                 + ", role=" + role + ", username=" + username + "]";
     }
 
-    
 }

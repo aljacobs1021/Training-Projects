@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MasterViewServlet extends HttpServlet{
-	
+public class MasterViewServlet extends HttpServlet {
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-		System.out.println("Starting in the Master doGet method");
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		System.out.println("Starting in the Master doGet method: " + req.getRequestURI());
 		req.getRequestDispatcher(RequestViewHelper.process(req)).forward(req, res);
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		doGet(req, res);
 	}
-	
+
 }

@@ -5,7 +5,9 @@ import com.example.exceptions.InvalidCredentialsException;
 import com.example.exceptions.UserDoesNotExistException;
 import com.example.exceptions.UserNameAlreadyExistsException;
 import com.example.logging.Logging;
-import com.example.models.Roles;
+//import com.example.models.Roles;
+import com.example.models.URoles;
+//import com.example.models.URoles;
 import com.example.models.User;
 
 public class UserServices {
@@ -15,9 +17,9 @@ public class UserServices {
         this.uDao = u;
     }
 
-    public User signUp(String first, String last, String email, String password, Roles role)
+    public User signUp(String first, String last, String email, String username, String password, URoles role)
             throws UserNameAlreadyExistsException {
-        User u = new User(first, last, email, password, role);
+        User u = new User(first, last, email, username, password, role);
 
         try {
             uDao.insert(u);

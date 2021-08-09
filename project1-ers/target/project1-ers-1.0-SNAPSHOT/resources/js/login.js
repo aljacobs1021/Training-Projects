@@ -1,37 +1,36 @@
-let form = document.getElementById("login").addEventListener('submit', login);
-
+//let form = document.getElementById("login").addEventListener('submit', login);
 async function login(e){
 	e.preventDefault();
 	let username = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
-	
+
 	let user = {
-		username,
-		password
+		'username': username,
+		'password': password
 	}
 	
 	console.log(user);
 	
-	
-	try{
-		let req = await fetch('http://localhost:8080/project1-ers/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(user)
-		});
-		let res = await req.json();
+	let req1 = await fetch('./api/login', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(user)
+	}).then(req => req.json())
+	.then(res => {
 		console.log(res);
-		if(res.role==='EMPLOYEE'){
-			location.href = 'resources/html/Employee.html';
-		}else{
-			location.href = 'resources/html/managerhome.html';
+		 if(res.role == "MANAGER"){
+			//console.log('manager');
+			location.href = '/project1-ers-1.0-SNAPSHOT/Manager';
+		} else if (res.role == "EMPLOYEE"){
+			//console.log('employee');
+			location.href = '/project1-ers-1.0-SNAPSHOT/Employee';
+		} 
+		else {
+			alert('Username or password incorrect!');
+			return;
 		}
-	} catch(e){
-		alert('Username or password incorrect!');
-		return;
-	}
-	
-	location.href = 'resources/html/Employee.html';
+	});
 }
+document.getElementById('submit').addEventListener('click', login);

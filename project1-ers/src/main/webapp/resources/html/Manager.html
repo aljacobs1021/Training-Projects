@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Social Hub</title>
+        <title>Employee Reimbursement System</title>
         <meta charset = "utf-8">
-        <link rel="stylesheet" href="../css/Css.css">
+        <link rel="stylesheet" href="resources/css/style.css">
     </head>
     <body>
-        <!-- It is very common for lists to be used for navbars -->
-        <div class='navbar'>
+         <!-- It is very common for lists to be used for navbars -->
+         <div class='navbar'>
             <ul class='nav-list'>
-                <li class='nav-item'><a class='nav-link' href="profile.html"><img id='profile-pic' src='https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png' height='60px' width='60px' /></a></li>
-                <li class='nav-item'><a class='nav-link' href='#'>Feed</a></li>
-                <li class='nav-item'><a class='nav-link' href='#'>Profile Page</a></li>
-                <li class='nav-item'><button id='logout'>Logout</button></li>
+                <li class='nav-item'><a class='nav-link' href="Profile.html"><img id='profile-pic' src='https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png' height='60px' width='60px' /></a></li>
+                <li class='nav-item'><button href="login.html">Logout</button></li>
             </ul>
-        </div>
-
-        <!-- This is a header element, they go from h1 to h6 -->
-        <div id='main'>
-            <h1>Welcome to Social Hub!</h1>
-        	
-        	<form>
-        		<textarea id="post-content" name="content" cols="50" maxlength="250"
-                    placeholder="Type your post here"></textarea>
-                <button id="new-post-btn">Submit new post</button>
-        	</form>
-        	
-            <div id="post-container">
-
-            </div>
+            <li class="dropdown">
+                <button class="dropbtn">三</button>
+                <div class="dropdown-content">
+                    <a href = "Profile.html">Account Details</a>
+                    <a href = "Employee.html">Home</a>
+                    <a href = "EmpViewRiemb.html">View Reimbursements</a>
+                    <a href = "EmpRequestNewReimb.html">Request a Reimbursement</a>
+                </div>
+            </li>
         </div>
     </body>
 </html>

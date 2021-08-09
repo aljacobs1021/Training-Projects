@@ -7,14 +7,30 @@
   
   <!-- We will map the master view resolving servlet -->
   <servlet>
+  	<servlet-name>MasterViewServlet</servlet-name>
+  	<servlet-class>com.example.servlets.MasterViewServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MasterViewServlet</servlet-name>
+  	<!-- We can use the * to specify multiple mappings -->
+  	<url-pattern>/login</url-pattern>
+    <url-pattern>/Employee</url-pattern>
+    <url-pattern>/Manager</url-pattern>
+  </servlet-mapping>
+  <servlet>
   	<servlet-name>MasterJSONServlet</servlet-name>
   	<servlet-class>com.example.servlets.MasterJSONServlet</servlet-class>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
   	<servlet-name>MasterJSONServlet</servlet-name>
-  	<!-- We can use the * to specify multiple mappings -->
   	<url-pattern>/api/*</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/resources/js/*</url-pattern>
+     <url-pattern>/resources/html/*</url-pattern>
+      <url-pattern>/resources/css/*</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -11,20 +11,18 @@ import com.example.controllers.SessionController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class ServletJSONHelper {
-	
-	public static void process(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
-		System.out.println("In the ServletJSONHelper with URI: " + req.getRequestURI());
-		switch(req.getRequestURI()) {
-			case "/project1-ers/api/login":
+
+	public static void process(HttpServletRequest req, HttpServletResponse res)
+			throws IOException, JsonProcessingException {
+		System.out.println("In the JSONServlet Helper with URI: " + req.getPathInfo());
+		switch (req.getPathInfo()) {
+			case "/login":
 				LoginController.login(req, res);
 				break;
-			/*case "/SocialHubWeek4/api/logout":
-				//LogoutController.logout(req, res);
-				break; */
-			case "/project1-ers/api/getSession":
+			case "/getSession":
 				SessionController.getSession(req, res);
 				break;
 		}
 	}
-	
+
 }

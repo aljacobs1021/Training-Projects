@@ -19,20 +19,21 @@ public class ERSDriver {
         RStatusDAO rSDao = new RStatusDAO();
         RTypeDAO rTDao = new RTypeDAO();
         URolesDAO uRDao = new URolesDAO();
-        URoles E = new URoles(1, Roles.EMPLOYEE);
-        URoles M = new URoles(0, Roles.MANAGER);
+        URoles M = new URoles(1, Roles.MANAGER);
+        URoles E = new URoles(2, Roles.EMPLOYEE);
         RStatus S = new RStatus(1, Status.SUBMITTED);
         RStatus A = new RStatus(2, Status.APPROVED);
         RStatus D = new RStatus(3, Status.DENIED);
-        RType F = new RType(1, Type.FOOD);
-        RType L = new RType(2, Type.LODGING);
-        RType O = new RType(3, Type.OTHER);
-        RType T = new RType(4, Type.TRAVEL);
+        RType F = new RType(0, Type.FOOD);
+        RType L = new RType(1, Type.LODGING);
+        RType O = new RType(2, Type.OTHER);
+        RType T = new RType(3, Type.TRAVEL);
+        User u = new User();
 
         uRDao.insert(M);
         uRDao.insert(E);
-        User u1 = new User("Robert", "SpeedWagon", "reos@spw.com", "oil", Roles.MANAGER);
-        User u2 = new User("John", "Constantine", "jconstantine@gmail.com", "hellblazer", Roles.EMPLOYEE);
+        User u1 = new User("Robert", "SpeedWagon", "reos@spw.com", u.getUsername(), "oil", M);
+        User u2 = new User("John", "Constantine", "jconstantine@gmail.com", u.getUsername(), "hellblazer", E);
         uDao.insert(u1);
         uDao.insert(u2);
 
@@ -43,8 +44,10 @@ public class ERSDriver {
         rTDao.insert(L);
         rTDao.insert(O);
         rTDao.insert(T);
-        Reimbursement r1 = new Reimbursement(500, "Traveling to Philly", Status.SUBMITTED, Type.TRAVEL, u1, u2);
+        Reimbursement r1 = new Reimbursement(500, "Traveling to Philly", S, T, u2, u1);
+        Reimbursement r2 = new Reimbursement(200, "Omg is that ariana grande", S, O, u2, u1);
         rDao.insert(r1);
+        rDao.insert(r2);
 
     }
 }

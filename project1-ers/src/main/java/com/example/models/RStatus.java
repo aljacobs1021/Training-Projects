@@ -22,7 +22,12 @@ public class RStatus {
     @Column(name = "reimb_status")
     private Status status;
 
+    public RStatus() {
+        
+    }
+
     public RStatus(int id, Status status) {
+        super();
         this.id = id;
         this.status = status;
     }
@@ -43,6 +48,9 @@ public class RStatus {
         this.status = status;
     }
 
-    
+    @Override
+    public String toString() {
+        return "RStatus [id=" + id + ", status=" + status + "]";
+    }
 
 }
