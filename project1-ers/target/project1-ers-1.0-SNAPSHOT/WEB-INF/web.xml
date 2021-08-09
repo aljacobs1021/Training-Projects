@@ -29,8 +29,6 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/resources/js/*</url-pattern>
-     <url-pattern>/resources/html/*</url-pattern>
-      <url-pattern>/resources/css/*</url-pattern>
+    <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
 </web-app>

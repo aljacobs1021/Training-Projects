@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.controllers.LoginController;
+import com.example.controllers.ReimbursementController;
 //import com.example.controllers.LogoutController;
 import com.example.controllers.SessionController;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,6 +22,9 @@ public class ServletJSONHelper {
 				break;
 			case "/getSession":
 				SessionController.getSession(req, res);
+				break;
+			case "/EmpRequestNewReimb":
+				ReimbursementController.addReimbursements(req, res);
 				break;
 		}
 	}

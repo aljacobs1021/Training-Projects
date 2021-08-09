@@ -2,6 +2,9 @@ package com.example.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import com.example.models.RType;
 import com.example.models.Reimbursement;
 import com.example.utils.HibernateUtil;
 
@@ -34,9 +37,23 @@ public class ReimbDAO {
 		return reimbursement;
 	}
 
+	public RType getRType(String rType) {
+		Session ses = HibernateUtil.getSession();
+		RType type = ses.createQuery("from ReimbursementType where ersType=" + rType, RType.class).uniqueResult();
+		return type;
+	}
+
 	public List<Reimbursement> selectAll() {
 		Session ses = HibernateUtil.getSession();
 		List<Reimbursement> rList = ses.createQuery("from Reimbursement", Reimbursement.class).list();
 		return rList;
+	}
+	
+	public void deleteReimbById(int id) {
+		Session ses = HibernateUtil.getSession();
+		Reimbursement r = ses.get(Reimbursement.class, id);
+		Transaction tx = ses.beginTransaction();
+		ses.delete(r);
+		tx.commit();
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.models;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 //import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,11 +35,11 @@ public class Reimbursement {
 
     @CreationTimestamp
     @Column(name = "submitted", nullable = false)
-    private LocalDateTime submitTime; // submitted time
+    private Timestamp submitTime; // submitted time
 
     @CreationTimestamp
     @Column(name = "resolved", nullable = false)
-    private LocalDateTime resolveTime; // resolved time
+    private Timestamp resolveTime; // resolved time
 
     @Column(name = "description", nullable = false)
     private String desc; // description of the reimbursement request
@@ -86,7 +87,7 @@ public class Reimbursement {
         this.manager_id = resolver;
     }
 
-    public Reimbursement(int id, double amount, LocalDateTime submitTime, LocalDateTime resolveTime, String desc,
+    public Reimbursement(int id, double amount, Timestamp submitTime, Timestamp resolveTime, String desc,
             String receipt, User author, User resolver, RStatus status, RType type) {
         super();
         this.id = id;
@@ -99,6 +100,23 @@ public class Reimbursement {
         this.manager_id = resolver;
         this.status = status;
         this.type = type;
+    }
+
+    public Reimbursement(RType type, double amount, LocalDateTime resolveddate, String desc, RStatus status) {
+        super();
+        this.amount = amount;
+        this.desc = desc;
+        this.status = status;
+        this.type = type;
+    }
+
+    public Reimbursement(double amount, Timestamp ts, String description, RStatus status, RType t, User employee) {
+        this.amount = amount;
+        this.submitTime = ts;
+        this.desc = description;
+        this.employee_id = employee;
+        this.status = status;
+        this.type = t;
     }
 
     public void setId(int id) {
@@ -117,19 +135,19 @@ public class Reimbursement {
         return this.amount;
     }
 
-    public void setSubTime(LocalDateTime submitTime) {
+    public void setSubTime(Timestamp submitTime) {
         this.submitTime = submitTime;
     }
 
-    public LocalDateTime getSubTime() {
+    public Timestamp getSubTime() {
         return this.submitTime;
     }
 
-    public void setResTime(LocalDateTime resolveTime) {
+    public void setResTime(Timestamp resolveTime) {
         this.resolveTime = resolveTime;
     }
 
-    public LocalDateTime getResTime() {
+    public Timestamp getResTime() {
         return this.resolveTime;
     }
 

@@ -52,4 +52,8 @@ public class UserServices {
 		return uDao.getUserByUsername(username);
 	}
 
+    public User getUserById(int userNameID) {
+        return null;
+    }
+
 }
